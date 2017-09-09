@@ -32,35 +32,19 @@ How to use
 ::
 
      apt-get install git-core
-     git clone https://github.com/StamusNetworks/KTS5.git
+     git clone https://github.com/aspel/KTS5.git
      cd KTS5
      
 Load the dashboards: ::
 
  ./load.sh
 
-If this is a clean elasticsearch 5.x installation (aka not an upgrade from 2.x to 5.x) you need to: ::
-
- find /path/to/KTS5/dashboards/ -type f -exec sed -i -e 's/.raw/.keyword/g' {} ;
- 
-You would need to select ``logstash-*`` as a default index once you open any dashboard for the first time after initial load/import.
+You would need to select ``suricata-*`` as a default index once you open any dashboard for the first time after initial load/import.
 
 For optimal results an example of elasticsearch template has been included under `es-template\elasticsearch5-template.json` that is used in SELKS 4.
-
-**NOTE:**  
-This may delete any custom dashboards you already have in place. 
-
-**NOTE:**  
-In order to use the full HTTP logging dashboard template you need to set up Suricata as
-explained here - http://www.pevma.blogspot.se/2014/06/http-header-fields-extended-logging.html  
 
 **NOTE:**  
 If the traffic you are inspecting contains vlans - in order to use the VLAN template, make sure you have enabled vlan tracking in ``suricata.yaml`` -
 
      vlan:
        use-for-tracking: true
-
-**NOTE:**  
-For best user experience use with 1680 x 1050 screen resolution!!  
-
-Do not hesitate to test,feedback and contribute !

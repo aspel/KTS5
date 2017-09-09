@@ -24,18 +24,8 @@ fi
 echo $CURL
 DIR=dashboards
 
-echo "Cleaning elasticsearch's kibana data"
-$CURL -H "Content-Type: application/json" -XDELETE $ELASTICSEARCH/.kibana/ ||:
-
-for file in $DIR/index-pattern/*.json
-do
-    name="$(get_name "$file")"
-    echo "Loading index pattern $name:"
-
-    $CURL -H "Content-Type: application/json" -XPOST "$ELASTICSEARCH/.kibana/index-pattern/$name" \
-        -d "@$file" || exit 1
-    echo
-done
+#echo "Cleaning elasticsearch's kibana data"
+#$CURL -H "Content-Type: application/json" -XDELETE $ELASTICSEARCH/.kibana/ ||:
 
 
 for file in $DIR/search/*.json
